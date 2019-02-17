@@ -14,6 +14,10 @@ body {
 	height: 360px;
 }
 
+#header-spacer {
+	height: 70px;
+}
+
 #header-image {
 	position: fixed;
 	height: 360px;
@@ -27,13 +31,13 @@ body {
 
 #header-block-holder {
 	position: relative;
-	top: 55px;
+	top: 15px;
 	height: 200px;
 	border-style: solid;
 	border-color: rgba(255,255,255,1);
 	border-width: 2px;
 	border-radius: 0px;
-	width: 550px;
+	width: 540px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -56,6 +60,12 @@ body {
 	text-align: center;
 	font-family: Quicksand, sans-serif;
 	color: rgba(255,255,255,1);
+}
+
+#header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 
 #hleft {
@@ -126,6 +136,7 @@ body {
 	padding-left: 50px;
 	padding-top: 25px;
 	padding-bottom: 20px;
+	max-height: 999999px;
 }
 
 .content-description {
@@ -136,6 +147,7 @@ body {
 	font-size: 16px;
 	padding-left: 50px;
 	padding-bottom: 25px;
+	max-height: 999999px;
 }
 
 .content-breaker {
@@ -166,6 +178,33 @@ body {
 	font-size: 16px;
 	line-height: 30px;
 	margin-bottom: 20px;
+	max-height: 999999px;
+}
+
+@media screen and (max-width: 600px) {
+	#header-image, #header-holder {
+		height: 59.9vw;
+	}
+	#header-block-holder {
+		width: 90%;
+		top: 2.496vw;
+		height: 33.278vw;
+	}
+	#header-block-name {
+		font-size: 11.98vw;
+		font-weight: 300;
+	}
+	#header-block-description {
+		font-size: 2.662vw;
+	}
+	#hleft {
+		font-size: 3.993vw;
+		top: 2.995vw;
+		left: 2.995vw;
+	}
+	#header-spacer {
+		height: 11.647vw;
+	}
 }
 
 @media screen and (min-width: 1100px) {
