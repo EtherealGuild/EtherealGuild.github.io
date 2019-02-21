@@ -75,7 +75,6 @@ function CalculateCostSparePartQuintChance() {
 	var Current = unDo( $("#Cost-SparePart-QuintChance-Input-Current").val() );
 	var Wanted = unDo( $("#Cost-SparePart-QuintChance-Input-Wanted").val() );
 	var Scrapyard = unDo( $("#Cost-SparePart-QuintChance-Input-Scrapyard").val() );
-	var Result = 0;
 	if (Current.length == 0 || Wanted.length == 0 || Scrapyard.length == 0) {
 		return ReturnError("#Cost-SparePart-QuintChance","Improper Lengths!!");
 	}
@@ -84,19 +83,21 @@ function CalculateCostSparePartQuintChance() {
 	}
 	Current = Number(Current);
 	Wanted = Number(Wanted);
+	var Result = 0;
 	Current *= 10;
 	Wanted *= 10;
 	while (Current < Wanted) {
 		Current++;
 		Result += Math.round(Math.pow(0.99,Scrapyard) * Current * 20);
-		//ORIGINAL QUINT
-		//Old math for the old quint made by Zampa
-		//Math.round(Math.pow(0.99,Scrapyard) * Current * 20);
 	}
 	$("#Cost-SparePart-QuintChance .content-return").show()
 	$("#Cost-SparePart-QuintChance .content-return .return").text(Comma(Result) + " Spare Parts Required")
 	$("#Cost-SparePart-QuintChance .content-return .return").show()
 }
+
+//ORIGINAL QUINT
+//Old math for the old quint made by Zampa
+//Math.round(Math.pow(0.99,Scrapyard) * Current * 20);
 
 //Resource Boost
 function CalculateCostSparePartResourceBoost() {
@@ -158,6 +159,40 @@ function CalculateDropRateRhodiumIngots() {
 	$("#DropRate-RhodiumIngots .content-return .return").show()
 }
 
+//Upgrade Point Boost
+function CalculateCostGuildUpgradePointBoost() {
+	$("#Cost-Guild-UpgradePointBoost .content-return .return").hide()
+	$("#Cost-Guild-UpgradePointBoost .content-return .return-error").hide()
+	if ( $("#Cost-Guild-UpgradePointBoost-Input-Current").val() == '' || $("#Cost-Guild-UpgradePointBoost-Input-Wanted").val() == '' ) {
+		return ReturnError("#Cost-Guild-UpgradePointBoost","Empty values!");
+	}
+	var Current = unDo( $("#Cost-Guild-UpgradePointBoost-Input-Current").val() );
+	var Wanted = unDo( $("#Cost-Guild-UpgradePointBoost-Input-Wanted").val() );
+	if (Current.length == 0 || Wanted.length == 0) {
+		return ReturnError("#Cost-Guild-UpgradePointBoost","Improper Lengths!!");
+	}
+	if (! isNumber(Current) && isNumber(Wanted) ) {
+		return ReturnError("#Cost-Guild-UpgradePointBoost","Invalid values!");
+	}
+	Current = Number(Current);
+	Wanted = Number(Wanted);
+	var Result = 0;
+	Current /= 5;
+	Wanted /= 5;
+	if ( isNotWhole(Current) || isNotWhole(Wanted) ) {
+		return ReturnError("#Cost-Guild-UpgradePointBoost","Values must be multiples of 5!");
+	}
+	while (Current < Wanted) {
+		Result += 50000000*Current;
+		if (Result < 0) { Result = 0 }
+		Result += 50000000;
+		Current++;
+	}
+	$("#Cost-Guild-UpgradePointBoost .content-return").show()
+	$("#Cost-Guild-UpgradePointBoost .content-return .return").text(Comma(Result) + " Gold Required")
+	$("#Cost-Guild-UpgradePointBoost .content-return .return").show()
+}
+
 function ReturnError(i,t) {
 	$(i + " .content-return .return").hide();
 	$(i + " .content-return .return").text('');
@@ -182,4 +217,12 @@ function unDo(n) {
 	n = n.replace(/,/g,'')
 	n = n.replace(/%/g,'')
 	return n
+}
+
+function isNotWhole(value) {
+  if (value % 1 === 0) {
+    return false
+  } else {
+    return true
+  }
 }
