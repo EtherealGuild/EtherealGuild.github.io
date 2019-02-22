@@ -130,7 +130,7 @@ body {
 	background-color: white;
 }
 
-button:focus {
+button {
 	outline: none !important;
 }
 
@@ -290,4 +290,9 @@ button:focus {
 		line-height: 30px;
 		margin-bottom: 20px;
 	}
+}
+
+.spacer {
+	width: 100vh;
+	height: 50px;
 }
