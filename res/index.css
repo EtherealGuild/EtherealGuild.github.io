@@ -143,6 +143,8 @@ button {
 	background-color: rgba(235,235,235,1);
 }
 
+
+
 .content-block.head {
 	padding-bottom: 10px;
 }
@@ -159,6 +161,12 @@ button {
 	max-height: 999999px;
 }
 
+.content-block-holder .center {
+	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
 .content-description {
 	font-family: "Source Sans Pro", sans-serif;
 	color: rgba(117,117,117,1);
@@ -168,6 +176,10 @@ button {
 	padding-left: 8.078vw;
 	padding-bottom: 4.039vw;
 	max-height: 999999px;
+}
+
+.content-description.center {
+	text-align: center;
 }
 
 .content-breaker {
